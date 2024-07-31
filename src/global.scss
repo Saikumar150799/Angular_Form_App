@@ -34,4 +34,145 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+// @import "@ionic/angular/css/palettes/dark.system.css";
+.max-available-height {
+  height: -webkit-fill-available;
+}
+
+.padding-10 {
+  padding: 10px !important;
+}
+
+.padding-20 {
+  padding: 20px !important;
+}
+
+.black {
+  color: #252525;
+}
+
+.height-50 {
+  height: 50px !important;
+}
+
+.center-text {
+  text-align: center !important;
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.full-height {
+  height: 100% !important;
+}
+
+.display-flex {
+  display: flex !important;
+  ;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.font-16 {
+  font-size: 16px !important;
+}
+
+.height-fit-content {
+  height: fit-content !important;
+}
+
+.shadow-none {
+  box-shadow: none !important;
+}
+
+.font-weight-bold {
+  font-weight: bold !important;
+}
+
+.font-14 {
+  font-size: 14px !important;
+}
+
+.padding-0 {
+  padding: 0px !important;
+}
+
+.margin-0 {
+  margin: 0px !important;
+}
+.float-right {
+  float: right !important;;
+}
+.icon-25 {
+  width: 25px !important;
+  height: 25px !important;
+}
+.font-20 {
+  font-size: 20px !important;
+}
+
+.min-width-40 {
+  min-width: 40px;
+}
+
+.margin-top-30 {
+  margin-top: 30px !important;
+}
+.capitalize-text {
+  text-transform: capitalize !important;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ion-item {
+  --inner-padding-bottom: 0px !important;
+  --inner-padding-end: 0px !important;
+  --inner-padding-start: 0px !important;
+  --inner-padding-top: 0px !important;
+  --padding-bottom: 0px !important;
+  --padding-end: 0px !important;
+  --padding-start: 0px !important;
+  --padding-top: 0px !important;
+}
+
+@media (max-width: 344px) {
+  .cube-56 {
+    height: 45px !important;
+    width: 45px !important;
+  }
+}
+
+@media (max-width: 300px) {
+  .cube-56 {
+    height: 40px !important;
+    width: 40px !important;
+  }
+}
+
+.border {
+  border: 1px solid #6C63FF;
+}
+
+.border-radius-5 {
+  border-radius: 5px;
+}
+
+.cube-56 {
+  height: 56px;
+  width: 56px;
+}

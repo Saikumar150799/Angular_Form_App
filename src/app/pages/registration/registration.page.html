@@ -1,0 +1,51 @@
+<ion-content class="container">
+  <div class="max-available-height full-width center-content no-scroll">
+    <div class=" full-width center-text padding-20">
+      <ion-row>
+        <ion-title class="center-text">Register</ion-title>
+      </ion-row>
+      <ion-row>
+        <!-- <ion-label class="full-width center-text">By creating a free account</ion-label> -->
+      </ion-row>
+
+      <ion-list>
+        <ion-item lines="none" class="input">
+          <ion-input labelPlacement="stacked" placeholder="Enter your name">
+            <ion-button fill="clear" slot="end" aria-label="Show/hide">
+              <ion-icon slot="icon-only" name="person-outline" aria-hidden="true"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </ion-item>
+        <ion-item lines="none" class="input">
+          <ion-input labelPlacement="stacked" placeholder="Enter your Email">
+            <ion-button fill="clear" slot="end" aria-label="Show/hide">
+              <ion-icon name="mail-outline"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-input class="input" labelPlacement="stacked" placeholder="Enter your phone number">
+            <ion-button fill="clear" slot="end" aria-label="Show/hide">
+              <ion-icon name="call-outline"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </ion-item>
+
+      </ion-list>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer class="bg-white shadow-none padding-20">
+  <ion-button class="height-50 capitalize-text font-16" shape="round" expand="block">
+    Register
+  </ion-button>
+  <div class="display-flex justify-content-center align-items-center">
+
+    <ion-label class="black">Already a member ?</ion-label>
+    <ion-button fill="clear" class="capitalize-text font-14 font-weight-bold" (click)="routeToLogIn()">
+      Login
+    </ion-button>
+  </div>
+</ion-footer>

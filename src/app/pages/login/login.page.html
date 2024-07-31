@@ -1,0 +1,66 @@
+<ion-content class="container">
+  <div class="max-available-height full-width center-content no-scroll">
+    <div class=" full-width center-text padding-20" [hidden]="visibleBlock==='otp'">
+
+      <ion-list>
+        <ion-item lines="none" class="input">
+          <ion-input labelPlacement="stacked" placeholder="Enter your Email">
+            <ion-button fill="clear" slot="end" aria-label="Show/hide">
+              <ion-icon name="mail-outline"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-input class="input" labelPlacement="stacked" placeholder="Enter your phone number">
+            <ion-button fill="clear" slot="end" aria-label="Show/hide">
+              <ion-icon name="call-outline"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </ion-item>
+
+      </ion-list>
+
+      <ion-button class="height-50 capitalize-text font-16" shape="round" expand="block" (click)="sendOtp()">
+        Send otp
+      </ion-button>
+    </div>
+    <div class=" full-width center-text padding-20" [hidden]="visibleBlock==='email'">
+      <div class="text-align-center margin-top-10">
+        <p class="font-weight-bold header-text font-20 header-line-height margin-0">
+          Enter verification code</p>
+        <p class="OTP-subheader-text margin-top-10 font-16">
+          Please enter the verification code sent to
+
+          <br>
+      </div>
+      <div class="verification-code">
+        <div class="verification-code--inputs">
+          <ion-input type="text" class="border cube border-radius-5 " #input1
+            (keyup)="next(input2, '', loginData.accessCode1)" maxlength="1"></ion-input>
+          <ion-input type="text" class="border cube border-radius-5 " #input2
+            (keyup)="next(input3, input1, loginData.accessCode2)" maxlength="1"></ion-input>
+          <ion-input type="text" class="border cube border-radius-5 " #input3
+            (keyup)="next(input4, input2, loginData.accessCode3)" maxlength="1"></ion-input>
+          <ion-input type="text" class="border cube border-radius-5 " #input4
+            (keyup)="next(input4,input3, loginData.accessCode4)" maxlength="1"></ion-input>
+        </div>
+      </div>
+
+      <ion-button class="height-50 capitalize-text font-16 margin-top-30" shape="round" expand="block" (click)="routeToDashboard()">
+        Login
+      </ion-button>
+    </div>
+  </div>
+
+
+</ion-content>
+
+<ion-footer class="bg-white shadow-none">
+  <div class="display-flex justify-content-center align-items-center">
+
+    <ion-label class="black">New Member?</ion-label>
+    <ion-button fill="clear" class="capitalize-text font-14 font-weight-bold" (click)="routeToRegister()">
+      Register now
+    </ion-button>
+  </div>
+</ion-footer>
