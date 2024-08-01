@@ -3,25 +3,28 @@
     <div class=" full-width center-text padding-20" [hidden]="visibleBlock==='otp'">
 
       <ion-list>
+        <ion-item lines="none">
+          <ion-input class="input" labelPlacement="stacked" placeholder="Name" [(ngModel)]="Form.name">
+            <ion-button fill="clear" slot="end" aria-label="Show/hide">
+              <ion-icon name="pencil-outline"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </ion-item>
         <ion-item lines="none" class="input">
-          <ion-input labelPlacement="stacked" placeholder="Enter your Email">
+          <ion-input labelPlacement="stacked" placeholder="Email" [(ngModel)]="Form.email"
+            (ngModelChange)="validateEmail()">
             <ion-button fill="clear" slot="end" aria-label="Show/hide">
               <ion-icon name="mail-outline"></ion-icon>
             </ion-button>
           </ion-input>
         </ion-item>
-        <ion-item lines="none">
-          <ion-input class="input" labelPlacement="stacked" placeholder="Enter your phone number">
-            <ion-button fill="clear" slot="end" aria-label="Show/hide">
-              <ion-icon name="call-outline"></ion-icon>
-            </ion-button>
-          </ion-input>
-        </ion-item>
-
+        <p *ngIf="isEmailValid" class="font-12 start-text color-red margin-0">Please enter a valid email</p>
       </ion-list>
 
-      <ion-button class="height-50 capitalize-text font-16" shape="round" expand="block" (click)="sendOtp()">
-        Send otp
+      <ion-button [disabled]="isEmailValid || !Form.email || !Form.name" class="height-50 capitalize-text font-16"
+        shape="round" expand="block" (click)="sendOtp()">
+        <ion-icon slot="start" name="checkmark-circle-outline" *ngIf="otpSent"></ion-icon>
+        {{sendOtpButtonText}}
       </ion-button>
     </div>
     <div class=" full-width center-text padding-20" [hidden]="visibleBlock==='email'">
@@ -30,23 +33,24 @@
           Enter verification code</p>
         <p class="OTP-subheader-text margin-top-10 font-16">
           Please enter the verification code sent to
-
-          <br>
+          <strong>{{Form.email}}</strong>
       </div>
       <div class="verification-code">
         <div class="verification-code--inputs">
-          <ion-input type="text" class="border cube border-radius-5 " #input1
+          <ion-input type="text" class="border cube border-radius-5 " #input1 [(ngModel)]="loginData.accessCode1"
             (keyup)="next(input2, '', loginData.accessCode1)" maxlength="1"></ion-input>
-          <ion-input type="text" class="border cube border-radius-5 " #input2
+          <ion-input type="text" class="border cube border-radius-5 " #input2 [(ngModel)]="loginData.accessCode2"
             (keyup)="next(input3, input1, loginData.accessCode2)" maxlength="1"></ion-input>
-          <ion-input type="text" class="border cube border-radius-5 " #input3
+          <ion-input type="text" class="border cube border-radius-5 " #input3 [(ngModel)]="loginData.accessCode3"
             (keyup)="next(input4, input2, loginData.accessCode3)" maxlength="1"></ion-input>
-          <ion-input type="text" class="border cube border-radius-5 " #input4
+          <ion-input type="text" class="border cube border-radius-5 " #input4 [(ngModel)]="loginData.accessCode4"
             (keyup)="next(input4,input3, loginData.accessCode4)" maxlength="1"></ion-input>
         </div>
       </div>
-
-      <ion-button class="height-50 capitalize-text font-16 margin-top-30" shape="round" expand="block" (click)="routeToDashboard()">
+      <p class="font-14 color-red" [hidden]="isvalidOTP">Invalid OPT</p>
+      <ion-button class="height-50 capitalize-text font-16 margin-top-30" shape="round" expand="block"
+      [disabled]="!loginData.accessCode1 || !loginData.accessCode2 || !loginData.accessCode3 || !loginData.accessCode4"
+        (click)="Login()">
         Login
       </ion-button>
     </div>

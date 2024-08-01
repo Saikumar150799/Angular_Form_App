@@ -7,51 +7,57 @@
       </div>
 
       <ion-avatar slot="end" [routerLink]="['/profile']" class="margin-left-0 min-width-40">
-        <img class="profile-avatar" src="{{profilePicture}}" onerror="src='../../../assets/profile.svg'">
+        <img class="profile-avatar"  [src]="ACTIVE_USER.gender == 'male' ? '../../../assets/profile-boy.avif': '../../../assets/girl-profile.avif'" onerror="src='../../../assets/profile.svg'">
       </ion-avatar>
     </ion-item>
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-progress-bar *ngIf="showLoading" type="indeterminate"></ion-progress-bar>
+
   <ion-row>
 
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar class="ion-searchbar" [(ngModel)]="searchText" (ionInput)="handleSearch()"></ion-searchbar>
 
   </ion-row>
   <ion-row>
-    <ion-col size="6" *ngFor="let user of users">
+    <ion-col size="12" *ngFor="let user of filteredUsers">
       <ion-card class="margin-0">
-        <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-        <ion-card-header>
-          <ion-card-title>{{user?.name}}</ion-card-title>
-          <ion-card-subtitle>{{user?.phoneNumber}}</ion-card-subtitle>
+        <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> -->
+        <ion-card-header class="padding-top-0 padding-bottom-0">
+          <div class="display-flex align-items-center justify-content-space-between">
+            <ion-card-title>{{user?.name}}</ion-card-title>
+            <ion-button (click)="presentActionSheet(user)" fill="clear"
+              class=" width-50px padding-0 float-right edit-btn" color="light-gray">
+              <ion-icon name="ellipsis-vertical-outline" color="light-gray"></ion-icon>
+            </ion-button>
+          </div>
         </ion-card-header>
 
         <ion-card-content>
-          <p>
 
+          <p>
+            <strong>Phone Number: </strong> {{user?.phoneNumber}}
+          </p>
+          <p>
             <strong>Email: </strong> {{user?.email}}
           </p>
           <p>
-
             <strong>Gender: </strong> {{user?.gender}}
           </p>
           <p>
-
             <strong>Application Amount: </strong> ₹{{user?.amount}}
           </p>
-
-          <ion-button (click)="presentActionSheet()" fill="clear" class="padding-0 float-right edit-btn"
-            color="light-gray">
-            <ion-icon name="ellipsis-vertical-outline" color="light-gray"></ion-icon>
-          </ion-button>
 
         </ion-card-content>
       </ion-card>
     </ion-col>
+
   </ion-row>
+  <div class="height-70-percent center-content center-text" *ngIf="filteredUsers.length === 0 && !showLoading">
+    <ion-img src="../../../assets/empty.jpg"></ion-img>
+  </div>
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button (click)="addList()">
       <ion-icon name="add"></ion-icon>

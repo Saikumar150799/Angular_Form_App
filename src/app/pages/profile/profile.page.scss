@@ -1,3 +1,37 @@
 ion-content {
-    --background: #f2f1ed !important;
+    // --background: #3f3f3f !important;
+}
+.profile-bg {
+    height: 30%;
+    background-image: url('../../../assets/Form-Filling.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.profile-img {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    bottom: -50px;
+    left: 40%;
+    border: 5px solid white;
+}
+
+.user-info {
+    margin-top: 50px;
+    background-color: black;
+}
+
+.input-box {
+    border-radius: 10px;
+    background-color: #3f3f3f;
+    padding-left: 10px !important;
+}
+
+.input-label {
+    font-size: 20px;
+    margin-bottom: 15px;
+    padding-left: 10px !important;
 }

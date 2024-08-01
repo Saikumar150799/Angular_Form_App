@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -7,6 +7,9 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./add-form.component.scss'],
 })
 export class AddFormComponent implements OnInit {
+
+  @Input() user: any;
+
   constructor(private modalService: ModalController) {}
 
   public FORM = {
@@ -15,9 +18,13 @@ export class AddFormComponent implements OnInit {
     amount: '',
     phoneNumber: '',
     gender: '',
+    id: Math.random().toString(36).substr(2, 9),
   };
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.FORM = Object.assign(this.FORM,this.user)
+    console.log("Form",this.user)
+  }
 
   closeModal() {
     this.modalService.dismiss();
@@ -27,13 +34,21 @@ export class AddFormComponent implements OnInit {
   }
   handleSubmit() {
     const prevData = localStorage.getItem('DATA');
+
+    
     let data = [];
     if (prevData) {
       data = JSON.parse(prevData);
     }
-    data.push(this.FORM);
-    console.log("data", data);
-    localStorage.setItem("DATA", JSON.stringify(data));
+    
+    const findUser = data.find((user: any) => user.id == this.FORM.id);
+    if(findUser) {
+      Object.assign(findUser, this.FORM)
+    } else {
 
+      data.push(this.FORM);
+    }
+    localStorage.setItem('DATA', JSON.stringify(data));
+    this.modalService.dismiss('success');
   }
 }

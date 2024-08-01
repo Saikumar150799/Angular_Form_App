@@ -1,35 +1,36 @@
 <ion-content>
-  <ion-row class="bg-white">
+  <ion-row class="bg-black">
     <ion-button fill="clear" (click)="closeModal()">
       <ion-icon class="icon-25" name="arrow-back-circle-outline"></ion-icon>
     </ion-button>
   </ion-row>
 
-  <ion-list>
-    <ion-item>
+  <ion-img src="../../../assets/Form-Filling.jpg"></ion-img>
+  <ion-list class="max-available-height bg-black padding-10">
+    <ion-item lines="none" class="margin-bottom-10 border-radius-5">
       <ion-input labelPlacement="stacked" placeholder="Name" [(ngModel)]="FORM.name" inputmode="text">
       </ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item lines="none" class="margin-bottom-10 border-radius-5">
       <ion-input labelPlacement="stacked" placeholder="Phone Number"  [(ngModel)]="FORM.phoneNumber" inputmode="tel">
       </ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item lines="none" class="margin-bottom-10 border-radius-5">
       <ion-input labelPlacement="stacked" placeholder="Email Address" [(ngModel)]="FORM.email" inputmode="email">
       </ion-input>
     </ion-item>
 
-    <ion-item>
-
-      <ion-select aria-label="Fruit" interface="popover" placeholder="Gender" [(ngModel)]="FORM.gender">
+    <ion-item lines="none" class="margin-bottom-10 border-radius-5">
+      <ion-label style="color: gray;">Gender</ion-label>
+      <ion-select aria-label="Fruit" interface="popover" class="gender-selection" [(ngModel)]="FORM.gender">
       <ion-select-option value="Male">Male</ion-select-option>
       <ion-select-option value="Female">Female</ion-select-option>
     </ion-select>
     </ion-item>
 
-    <ion-item>
+    <ion-item lines="none" class="margin-bottom-10 border-radius-5">
       <ion-input labelPlacement="stacked" placeholder="Application Amount" inputmode="tel" [(ngModel)]="FORM.amount">
       </ion-input>
     </ion-item>

@@ -10,26 +10,35 @@
 
       <ion-list>
         <ion-item lines="none" class="input">
-          <ion-input labelPlacement="stacked" placeholder="Enter your name">
+          <ion-input labelPlacement="stacked" placeholder="Enter your name" [(ngModel)]="Form.name">
             <ion-button fill="clear" slot="end" aria-label="Show/hide">
               <ion-icon slot="icon-only" name="person-outline" aria-hidden="true"></ion-icon>
             </ion-button>
           </ion-input>
         </ion-item>
         <ion-item lines="none" class="input">
-          <ion-input labelPlacement="stacked" placeholder="Enter your Email">
+          <ion-input labelPlacement="stacked" placeholder="Enter your Email" [(ngModel)]="Form.email"
+            (ngModelChange)="validateEmail()">
             <ion-button fill="clear" slot="end" aria-label="Show/hide">
               <ion-icon name="mail-outline"></ion-icon>
             </ion-button>
           </ion-input>
         </ion-item>
-        <ion-item lines="none">
-          <ion-input class="input" labelPlacement="stacked" placeholder="Enter your phone number">
+        <ion-item lines="none" class="input">
+          <ion-input labelPlacement="stacked" placeholder="Enter your phone number" [(ngModel)]="Form.phoneNumber">
             <ion-button fill="clear" slot="end" aria-label="Show/hide">
               <ion-icon name="call-outline"></ion-icon>
             </ion-button>
           </ion-input>
         </ion-item>
+        <ion-item lines="none" class="input">
+          <ion-input labelPlacement="stacked" placeholder="Gender" [(ngModel)]="Form.gender">
+            <ion-button fill="clear" slot="end" aria-label="Show/hide">
+              <ion-icon name="call-outline"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </ion-item>
+        <p *ngIf="isEmailValid" class="font-12 start-text color-red margin-0">Please enter a valid email</p>
 
       </ion-list>
     </div>
@@ -38,8 +47,11 @@
 </ion-content>
 
 <ion-footer class="bg-white shadow-none padding-20">
-  <ion-button class="height-50 capitalize-text font-16" shape="round" expand="block">
-    Register
+  <ion-button class="height-50 capitalize-text font-16"shape="round" expand="block" (click)="register()"
+  [disabled]="isEmailValid || !Form.email || !Form.phoneNumber">
+
+    <ion-icon slot="start" name="checkmark-circle-outline" *ngIf="registerComplete"></ion-icon>
+    {{registerButtonText}}
   </ion-button>
   <div class="display-flex justify-content-center align-items-center">
 

@@ -32,13 +32,35 @@
  * https://ionicframework.com/docs/theming/dark-mode
  */
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-// @import "@ionic/angular/css/palettes/dark.system.css";
+ @import "@ionic/angular/css/palettes/dark.always.css"; 
+@import "@ionic/angular/css/palettes/dark.class.css"; 
+ @import "@ionic/angular/css/palettes/dark.system.css";
+
+* {
+  color: white !important;
+}
+
+.dark-bg { 
+  background: #3f3f3f !important;
+}
 .max-available-height {
   height: -webkit-fill-available;
 }
 
+.height-70-percent {
+  height: 70% !important;
+}
+.width-50px {
+  width: 50px;
+}
+
+.padding-top-0 {
+  padding-top: 0px;
+}
+
+.padding-bottom-0 {
+  padding-bottom: 0px;
+}
 .padding-10 {
   padding: 10px !important;
 }
@@ -51,12 +73,30 @@
   color: #252525;
 }
 
+.input-box {
+  border-radius: 10px;
+  background-color: #3f3f3f;
+  padding-left: 10px !important;
+}
+
+.bg-black {
+  background: black !important;
+}
+
 .height-50 {
   height: 50px !important;
 }
 
+.color-red {
+  color: red !important;
+}
+
 .center-text {
   text-align: center !important;
+}
+
+.start-text {
+  text-align: start !important;
 }
 
 .full-width {
@@ -80,8 +120,15 @@
   justify-content: center !important;
 }
 
+.justify-content-space-between {
+  justify-content: space-between !important;
+}
+
 .font-16 {
   font-size: 16px !important;
+}
+.font-12 {
+  font-size: 12px !important;
 }
 
 .height-fit-content {
@@ -121,7 +168,20 @@
 .min-width-40 {
   min-width: 40px;
 }
+.margin-top-3 {
+  margin-top: 3px !important;
+}
 
+.margin-bottom-10 {
+  margin-bottom: 10px !important;
+}
+.margin-left-10 {
+  margin-left:  10px !important;
+}
+
+.margin-right-10 {
+  margin-right: 10px !important;
+}
 .margin-top-30 {
   margin-top: 30px !important;
 }
@@ -137,6 +197,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+ion-select  {
+  ion-label {
+
+    float: right !important;
+  }
 }
 
 .ion-item {

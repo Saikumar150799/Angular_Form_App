@@ -8,15 +8,49 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-row>
-    <ion-avatar>
-      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+  <ion-row class="profile-bg">
+    <ion-avatar class="profile-img">
+      <img alt="Silhouette of a person's head" [src]="ACTIVE_USER.gender == 'male' ? '../../../assets/profile-boy.avif': '../../../assets/girl-profile.avif'" />
     </ion-avatar>
   </ion-row>
+  <ion-list class="user-info">
+    <ion-item lines="none">
+      <ion-label class="input-label" position="stacked">Name</ion-label>
+      <ion-input class="input-box" type="url" placeholder="erikheinz.com" [value]="ACTIVE_USER?.name"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label class="input-label" position="stacked">Email</ion-label>
+      <ion-input class="input-box" type="email" placeholder="erikheinz@email.com"
+        [value]="ACTIVE_USER?.email">
+        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+          <ion-icon name="mail-outline"></ion-icon>
+        </ion-button>
+      </ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label class="input-label" position="stacked">Phone number</ion-label>
+      <ion-input class="input-box" type="tel" placeholder="(555) 555-1234" [value]="ACTIVE_USER?.phoneNumber">
+        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+          <ion-icon name="call-outline"></ion-icon>
+        </ion-button>
+      </ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label class="input-label" position="stacked">Gender</ion-label>
+      <ion-input class="input-box" type="password" placeholder="Gender" [value]="ACTIVE_USER?.gender">
+        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+        </ion-button>
+      </ion-input>
+    </ion-item>
+
+  </ion-list>
+
+
 </ion-content>
 
-<ion-footer class="bg-white shadow-none">
-  <ion-button style="color:#D13200 !important" class="capitalize-text font-16" fill="clear">
+<ion-footer class="dark-bg shadow-none">
+  <ion-button style="color:#D13200 !important" class="capitalize-text font-16" fill="clear" (click)="logOut()">
     <ion-icon slot="start" name="log-out-outline"></ion-icon>
     Logout
   </ion-button>

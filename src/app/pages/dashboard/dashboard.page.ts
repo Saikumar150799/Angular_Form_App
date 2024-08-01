@@ -1,7 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  model,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { AddFormComponent } from 'src/app/components/add-form/add-form.component';
 
+interface User {
+  name?: string;
+  email?: string;
+  amount?: string;
+  phoneNumber?: string;
+  gender?: string;
+  id?: string;
+}
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -12,31 +26,42 @@ export class DashboardPage implements OnInit {
 
   constructor(
     private actionSheetCtrl: ActionSheetController,
-    private modalService: ModalController
+    private modalService: ModalController,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
   public profilePicture: string = '';
+  public filteredUsers: User[] = [];
+  public showLoading: boolean = false;
+  public ACTIVE_USER: any ;
   ngOnInit() {
+    this.ACTIVE_USER = JSON.parse(window.localStorage.getItem('ACTIVE_USER')  || '');
+  }
+
+  ionViewDidEnter() {
     this.getData();
   }
-  public users: {
-    name: '';
-    email: '';
-    amount: '';
-    phoneNumber: '';
-    gender: '';
-  }[] = [];
-
+  public users: User[] = [];
+  public searchText: string = '';
   public getData() {
+    this.showLoading = true;
     const data = localStorage.getItem('DATA');
     if (data) {
-      this.users = JSON.parse(data);
+      setTimeout(() => {
+        this.users = JSON.parse(data);
+        this.filteredUsers = this.users;
+        this.showLoading = false;
+      },1000)
     } else {
-      this.users = [];
-      console.log('No data found');
+      setTimeout(() => {
+
+        this.users = [];
+        this.showLoading = false;
+      },1000)
     }
+    this.changeDetectorRef.detectChanges();
   }
 
-  async presentActionSheet() {
+  async presentActionSheet(user: User) {
     console.log('caa');
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Actions',
@@ -46,16 +71,15 @@ export class DashboardPage implements OnInit {
           text: 'Edit',
           icon: 'create-outline',
           role: 'destructive',
-
-          data: {
-            action: 'delete',
+          handler: () => {
+            this.edit(user);
           },
         },
         {
           text: 'Delete',
           icon: 'trash-outline',
-          data: {
-            action: 'share',
+          handler: () => {
+            this.delete(user);
           },
         },
         {
@@ -72,11 +96,50 @@ export class DashboardPage implements OnInit {
     await actionSheet.present();
   }
 
+  public async edit(user: User) {
+    const modal = await this.modalService.create({
+      component: AddFormComponent,
+      componentProps: {
+        user: user
+      }
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+    if (data === 'success') {
+      this.users = [];
+      this.getData();
+    }
+  }
+
+  public delete(user: User) {
+    const userList = JSON.parse(window.localStorage.getItem('DATA') || '');
+    const filterUsers = userList.filter((data: any) => data.id !== user.id);
+    localStorage.setItem('DATA', JSON.stringify(filterUsers));
+    this.users = [];
+    this.getData();
+  }
+
   public async addList() {
-    const moadl = await this.modalService.create({
+    const modal = await this.modalService.create({
       component: AddFormComponent,
     });
+    modal.present();
 
-    return moadl.present();
+    const { data, role } = await modal.onWillDismiss();
+    if (data === 'success') {
+      this.users = [];
+      this.getData();
+    }
+  }
+
+  handleSearch() {
+    this.filteredUsers = !this.searchText
+      ? this.users
+      : this.users.filter((user) =>
+          user.name
+            ?.toLocaleLowerCase()
+            ?.includes(this.searchText.toLocaleLowerCase())
+        );
   }
 }

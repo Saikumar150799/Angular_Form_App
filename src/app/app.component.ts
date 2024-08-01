@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import * as emailjs from 'emailjs-com';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,9 @@ export class AppComponent {
 
 
   async initializeApp() {
-    this.router.navigate(['/dashboard']);
+    emailjs.init('-li_TGdNDDlRmvk-V')
+    const isLoggedIn = await window.localStorage.getItem('isLoggedIn');
+
+    this.router.navigate([isLoggedIn ? '/dashboard' : '/registration']);
   }
 }
