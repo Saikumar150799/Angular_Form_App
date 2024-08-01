@@ -1,7 +1,6 @@
 
 ion-item { 
-    --background: #C4C4C4;
-    --color: black ;
+    --background: #3f3f3f;
     --border-radius: 10px;
     margin-bottom: 10px;
     --padding-start: 10px !important ;
@@ -14,6 +13,7 @@ ion-item {
     display: flex;
     align-items: center;
     justify-content: center;
+    --background: black;
 }
 
 .wrong-otp-col-border {

@@ -13,7 +13,7 @@ export class ProfilePage implements OnInit {
   ) { }
 
   ngOnInit() {
-  this.ACTIVE_USER = JSON.parse(window.localStorage.getItem('ACTIVE_USER')  || '');
+  this.ACTIVE_USER = JSON.parse(JSON.parse(JSON.stringify(window.localStorage.getItem('ACTIVE_USER'))));
   }
 
   logOut() {

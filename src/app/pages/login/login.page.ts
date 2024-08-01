@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegistrationForm } from 'src/app/interfaces/RegisterForm';
 import * as emailjs from 'emailjs-com';
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  constructor(public router: Router) {}
+  constructor(public router: Router, private toastController: ToastController) {}
 
   public Form: RegistrationForm = {
     name: '',
@@ -34,7 +35,18 @@ export class LoginPage implements OnInit {
   routeToRegister() {
     this.router.navigate(['/registration']);
   }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'OTP has been successfully sent to ' + this.Form.email,
+      duration: 5000,
+      position: 'top',
+      icon: 'checkmark-circle-outline',
+      cssClass: 'toast-success',
+      color: 'success'
+    });
 
+    await toast.present();
+  }
   public addOnFocusClass(id: string) {
     document.getElementById(id)?.classList.add('otp-focus-border');
   }
@@ -92,7 +104,7 @@ export class LoginPage implements OnInit {
         this.sendOtpButtonText = 'Sent';
         this.visibleBlock = 'otp';
         this.otpSent = true;
-
+        this.presentToast()
         console.log('Email sent successfully', response);
         return response;
       })

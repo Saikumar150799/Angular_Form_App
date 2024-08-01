@@ -32,9 +32,25 @@ export class DashboardPage implements OnInit {
   public profilePicture: string = '';
   public filteredUsers: User[] = [];
   public showLoading: boolean = false;
-  public ACTIVE_USER: any ;
+  public ACTIVE_USER: any = {
+    gender:'male',
+  } ;
   ngOnInit() {
-    this.ACTIVE_USER = JSON.parse(window.localStorage.getItem('ACTIVE_USER')  || '');
+    let activeUserData = window.localStorage.getItem('ACTIVE_USER');
+
+    if (activeUserData) {
+      try {
+          activeUserData = Object.assign(this.ACTIVE_USER, activeUserData);
+      } catch (error) {
+          console.error('Failed to parse JSON:', error);
+          activeUserData = Object.assign(this.ACTIVE_USER, activeUserData);; // Fallback to an empty object
+      }
+  } else {
+    activeUserData = Object.assign(this.ACTIVE_USER, activeUserData)
+  }
+  console.log("Active user", activeUserData);
+    // this.ACTIVE_USER =  Object.assign(this.ACTIVE_USER, user);
+
   }
 
   ionViewDidEnter() {

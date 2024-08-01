@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RegistrationForm } from 'src/app/interfaces/RegisterForm';
 // import { SMTPClient } from 'emailjs';
 import * as emailjs from 'emailjs-com';
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.page.html',
@@ -20,7 +21,7 @@ export class RegistrationPage implements OnInit {
   public registerButtonText: string = 'Register';
   public registerComplete: boolean = false;
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private toastController: ToastController) {}
 
   ngOnInit() {}
 
@@ -35,6 +36,20 @@ export class RegistrationPage implements OnInit {
     } else {
       this.isEmailValid = true;
     }
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      header: 'Registration Successful!',
+      message: 'You can now try logging in',
+      duration: 5000,
+      position: 'top',
+      icon: 'checkmark-circle-outline',
+      cssClass: 'toast-success',
+      color: 'secondary',
+    });
+
+    await toast.present();
   }
 
   async register() {
@@ -55,6 +70,7 @@ export class RegistrationPage implements OnInit {
         phoneNumber: '',
         gender: '',
       };
+      this.presentToast()
       this.Form = Object.assign(this.Form, emptyForm);
     }, 3000);
   }

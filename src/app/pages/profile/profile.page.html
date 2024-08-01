@@ -7,14 +7,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-row class="profile-bg">
+<ion-content>
+  <ion-row [ngClass]="{'male-profile-bg': ACTIVE_USER?.gender !== 'female', 'female-profile-bg': ACTIVE_USER?.gender == 'female'}">
     <ion-avatar class="profile-img">
-      <img alt="Silhouette of a person's head" [src]="ACTIVE_USER.gender == 'male' ? '../../../assets/profile-boy.avif': '../../../assets/girl-profile.avif'" />
+      <img alt="Silhouette of a person's head" [src]="ACTIVE_USER?.gender == 'male' ? '../../../assets/profile-boy.avif': '../../../assets/girl-profile.avif'" />
     </ion-avatar>
   </ion-row>
-  <ion-list class="user-info">
-    <ion-item lines="none">
+  <ion-list class="user-info bg-black">
+    <ion-item lines="none bg-black">
       <ion-label class="input-label" position="stacked">Name</ion-label>
       <ion-input class="input-box" type="url" placeholder="erikheinz.com" [value]="ACTIVE_USER?.name"></ion-input>
     </ion-item>
@@ -46,10 +46,9 @@
 
   </ion-list>
 
-
 </ion-content>
 
-<ion-footer class="dark-bg shadow-none">
+<ion-footer class="shadow-none" style="background-color: #121212;">
   <ion-button style="color:#D13200 !important" class="capitalize-text font-16" fill="clear" (click)="logOut()">
     <ion-icon slot="start" name="log-out-outline"></ion-icon>
     Logout

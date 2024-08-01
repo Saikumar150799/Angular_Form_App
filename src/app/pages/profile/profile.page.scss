@@ -1,9 +1,18 @@
 ion-content {
-    // --background: #3f3f3f !important;
+    --background: black !important;
 }
-.profile-bg {
+.male-profile-bg {
     height: 30%;
-    background-image: url('../../../assets/Form-Filling.jpg');
+    background-image: url('../../../assets/profile-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.female-profile-bg {
+    height: 30%;
+    background-image: url('../../../assets/girl-profile-bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -21,12 +30,11 @@ ion-content {
 
 .user-info {
     margin-top: 50px;
-    background-color: black;
 }
 
 .input-box {
     border-radius: 10px;
-    background-color: #3f3f3f;
+    background-color: #121212;
     padding-left: 10px !important;
 }
 
@@ -34,4 +42,8 @@ ion-content {
     font-size: 20px;
     margin-bottom: 15px;
     padding-left: 10px !important;
+}
+
+ion-item {
+    --background: black;
 }

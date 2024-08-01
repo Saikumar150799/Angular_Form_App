@@ -37,9 +37,16 @@
  @import "@ionic/angular/css/palettes/dark.system.css";
 
 * {
-  color: white !important;
+  // color: white !important;
 }
 
+.txt-white {
+  color: white !important;;
+}
+
+.height-250 {
+  height: 250px !important;
+}
 .dark-bg { 
   background: #3f3f3f !important;
 }
