@@ -38,13 +38,13 @@
       </div>
       <div class="verification-code">
         <div class="verification-code--inputs">
-          <ion-input type="text" class="border cube border-radius-5 " #input1 [(ngModel)]="loginData.accessCode1"
+          <ion-input type="tel" class="border cube border-radius-5 " #input1 [(ngModel)]="loginData.accessCode1"
             (keyup)="next(input2, '', loginData.accessCode1)" maxlength="1"></ion-input>
-          <ion-input type="text" class="border cube border-radius-5 " #input2 [(ngModel)]="loginData.accessCode2"
+          <ion-input type="tel" class="border cube border-radius-5 " #input2 [(ngModel)]="loginData.accessCode2"
             (keyup)="next(input3, input1, loginData.accessCode2)" maxlength="1"></ion-input>
-          <ion-input type="text" class="border cube border-radius-5 " #input3 [(ngModel)]="loginData.accessCode3"
+          <ion-input type="tel" class="border cube border-radius-5 " #input3 [(ngModel)]="loginData.accessCode3"
             (keyup)="next(input4, input2, loginData.accessCode3)" maxlength="1"></ion-input>
-          <ion-input type="text" class="border cube border-radius-5 " #input4 [(ngModel)]="loginData.accessCode4"
+          <ion-input type="tel" class="border cube border-radius-5 " #input4 [(ngModel)]="loginData.accessCode4"
             (keyup)="next(input4,input3, loginData.accessCode4)" maxlength="1"></ion-input>
         </div>
       </div>
